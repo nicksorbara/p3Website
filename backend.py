@@ -1,8 +1,6 @@
-"""from flask import Flask, request, jsonify, send_from_directory,  send_from_directory
-from flask_cors import CORS"""
-import os
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory  #send_from_directory
 from flask_cors import CORS
+import os
 import uuid  # For generating unique file names
 from werkzeug.utils import secure_filename  # To handle filenames safely
 import cv2  # OpenCV for image processing (object detection)
