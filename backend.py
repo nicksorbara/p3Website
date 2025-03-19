@@ -1,7 +1,7 @@
 """from flask import Flask, request, jsonify, send_from_directory,  send_from_directory
 from flask_cors import CORS"""
 import os
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify#, send_from_directory
 from flask_cors import CORS
 import uuid  # For generating unique file names
 from werkzeug.utils import secure_filename  # To handle filenames safely
@@ -16,13 +16,13 @@ CORS(app)
 @app.route('/')
 def home():
     return "Server is running!"
-
+"""
 # Route to handle Apple touch icons
 @app.route('/apple-touch-icon.png')
 @app.route('/apple-touch-icon-precomposed.png')
 def apple_touch_icon():
     # Serve a default icon or a placeholder image
-    return send_from_directory('static', 'default-icon.png')
+    return send_from_directory('static', 'default-icon.png')"""
                                
 # Use Heroku's dynamic port
 if __name__ == '__main__':
