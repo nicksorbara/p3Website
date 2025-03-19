@@ -1,7 +1,7 @@
 flask
 flask-cors
 werkzeug
-opencv-python-headless
+opencv-python
 numpy
 pytesseract
 gunicorn
