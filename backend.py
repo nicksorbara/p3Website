@@ -32,6 +32,13 @@ CORS(app)
 def home():
     return "Server is running!"
 
+# Route to handle Apple touch icons
+@app.route('/apple-touch-icon.png')
+@app.route('/apple-touch-icon-precomposed.png')
+def apple_touch_icon():
+    # Serve a default icon or a placeholder image
+    return send_from_directory('static', 'default-icon.png')
+                               
 # Use Heroku's dynamic port
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))  # Use Heroku's assigned port
