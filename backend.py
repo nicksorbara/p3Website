@@ -11,7 +11,7 @@ import pytesseract  # Tesseract OCR for text recognition (to differentiate betwe
 import re  # Regular expressions for text processing
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/upload": {"origins": "https://your-github-username.github.io"}})
 
 @app.route('/')
 def home():

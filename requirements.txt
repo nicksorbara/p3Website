@@ -4,3 +4,4 @@ werkzeug
 opencv-python-headless
 numpy
 pytesseract
+gunicorn
