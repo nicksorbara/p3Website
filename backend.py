@@ -1,7 +1,7 @@
 """from flask import Flask, request, jsonify, send_from_directory,  send_from_directory
 from flask_cors import CORS"""
 import os
-from flask import Flask, request, jsonify#, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import uuid  # For generating unique file names
 from werkzeug.utils import secure_filename  # To handle filenames safely
@@ -40,20 +40,18 @@ def allowed_file(filename):
 
 @app.route("/upload", methods=["POST"])
 def upload_file():
-    """Handle file upload."""
-    print("Upload endpoint hit.")
-    
+    print("Upload endpoint hit.")  # Log when the endpoint is hit
     if "file" not in request.files:
-        print("No file part in the request.")
+        print("No file part in the request.")  # Log if no file is found in the request
         return jsonify({"message": "No file uploaded"}), 400
 
     file = request.files["file"]
     if file.filename == "":
-        print("Empty filename.")
+        print("Empty filename.")  # Log if the filename is empty
         return jsonify({"message": "No file selected"}), 400
 
     if not allowed_file(file.filename):
-        print(f"Invalid file type: {file.filename}")
+        print(f"Invalid file type: {file.filename}")  # Log if the file type is invalid
         return jsonify({"message": "Invalid file type"}), 400
 
     # Secure and generate a unique filename
@@ -64,15 +62,15 @@ def upload_file():
     try:
         # Save the file to the server
         file.save(file_path)
-        print(f"File saved as: {file_path}")
+        print(f"File saved as: {file_path}")  # Log the file path where the file is saved
     except Exception as e:
-        print(f"Error saving file: {str(e)}")
+        print(f"Error saving file: {str(e)}")  # Log any errors during file save
         return jsonify({"message": "Failed to save the file."}), 500
 
     # Process the image
     detected_objects, detected_text = process_image(file_path)
-    print("Detected Objects:", detected_objects)
-    print("Detected Text:", detected_text)
+    print("Detected Objects:", detected_objects)  # Log detected objects
+    print("Detected Text:", detected_text)  # Log detected text
 
     return jsonify({
         "message": f"File uploaded successfully as {unique_filename}",
