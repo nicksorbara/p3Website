@@ -13,9 +13,9 @@ import re  # Regular expressions for text processing
 app = Flask(__name__)
 CORS(app)
 
-"""@app.route('/')
+@app.route('/')
 def home():
-    return "Server is running!"""
+    return "Server is running!"
 """
 # Route to handle Apple touch icons
 @app.route('/apple-touch-icon.png')
