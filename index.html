@@ -129,6 +129,9 @@
         });
 
         // Send captured data to the Flask backend
+        // Change API URL to match your Heroku backend
+        const API_URL = "https://p3website.herokuapp.com/upload";
+
         async function sendDataToServer() {
             if (!fileBlob) {
                 console.error('No media captured!');
@@ -136,17 +139,16 @@
             }
 
             const formData = new FormData();
-            formData.append('file', fileBlob, 'photo.jpg'); // Save as JPG
+            formData.append('file', fileBlob, 'photo.jpg');
 
             try {
-                const response = await fetch('https://p3website.herokuapp.com/upload', {
+                const response = await fetch(API_URL, {
                     method: 'POST',
                     body: formData
                 });
 
                 const result = await response.json();
                 serverResponse.textContent = 'Server Response: ' + result.message;
-
                 console.log("File uploaded successfully: ", result);
 
             } catch (error) {
