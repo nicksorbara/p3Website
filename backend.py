@@ -1,7 +1,7 @@
 """from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS"""
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import uuid  # For generating unique file names
 from werkzeug.utils import secure_filename  # To handle filenames safely
@@ -9,9 +9,6 @@ import cv2  # OpenCV for image processing (object detection)
 import numpy as np  # Numpy for numerical operations
 import pytesseract  # Tesseract OCR for text recognition (to differentiate between objects and text)
 import re  # Regular expressions for text processing
-"""import os
-from flask import Flask, request, jsonify
-from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
@@ -20,17 +17,12 @@ CORS(app)
 def home():
     return "Server is running!"
 
-# Use Heroku's dynamic port
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))  # Use Heroku's assigned port
-    app.run(host='0.0.0.0', port=port)
-"""
-app = Flask(__name__)
-CORS(app)
-
-@app.route('/')
-def home():
-    return "Server is running!"
+# Route to handle Apple touch icons
+@app.route('/apple-touch-icon.png')
+@app.route('/apple-touch-icon-precomposed.png')
+def apple_touch_icon():
+    # Serve a default icon or a placeholder image
+    return send_from_directory('static', 'default-icon.png')
 
 # Use Heroku's dynamic port
 if __name__ == '__main__':
